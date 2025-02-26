@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Welcome to Laulima!</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+<script>
+function loadDynamicContentModal(modal){
+    document.getElementById('demo-modal').innerHTML = "<img src='LoaderIcon.gif' />";
+    fetch('get-dynamic-data.php?modal='+modal)
+        .then(response => response.text())
+        .then(data => document.getElementById('demo-modal').innerHTML = data);
+    fetch('get-title.php?modal='+modal)
+        .then(response => response.text())
+        .then(data => document.getElementById('modal-title-content').innerHTML = data);
+    fetch('get-footer.php?modal='+modal)
+        .then(response => response.text())
+        .then(data => document.getElementById('modal-footer-content').innerHTML = data);
+    new bootstrap.Modal(document.getElementById('bootstrap-modal')).show();
+}
+</script>
+
+<style>
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+}
+.topbar {
+    background-color: #15597e;
+}
+.show_link {
+    text-decoration: none;
+    border-bottom: 1px dotted #000;
+}
+.imgBackground {
+    background-image: url('LaulimaBanner-1280x498.png');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    height: 480px;
+}
+.support-section {
+    background-color: #15597e;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row topbar text-white p-2">
+            <div class="col-md-4"><img src="./logo.png" alt="Laulima Logo" width="125"></div>
+            <div class="col-md-8 text-end">
+                <a class="text-white" href="#" onclick="loadDynamicContentModal('&action=login_help')"><small>Can't Login?</small></a> |
+                <a href="/portal/login"><button class="btn btn-info btn-sm">UH Login</button></a>
+                <a href="/portal/xlogin"><button class="btn btn-info btn-sm">Guest Login</button></a>
+            </div>
+        </div>
+
+        <div class="container my-4">
+            <div class="card">
+                <a onclick="loadDynamicContentModal('&action=login_help')">
+                    <img class="card-img-top" src="laulima_full_banner.jpg" alt="Welcome to Laulima">
+                </a>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Laulima Support: 24/7/365</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="support-section">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-3 my-2">
+                        <button class="btn btn-light btn-sm" onclick="window.open('https://www.hawaii.edu/simp/laulima-feedback.php', '_blank')">
+                            <i class="fa fa-paper-plane"></i> Request Assistance
+                        </button>
+                    </div>
+                    <div class="col-md-3 my-2">
+                        <button class="btn btn-light btn-sm" onclick="window.open('https://www.hawaii.edu/itunesu/laulima/', '_blank')">
+                            <i class="fa fa-globe"></i> Request Site
+                        </button>
+                    </div>
+                    <div class="col-md-3 my-2">
+                        <button class="btn btn-light btn-sm" onclick="window.open('https://laulima.hawaii.edu/portal/help/main', '_blank')">
+                            <i class="fa fa-search"></i> Laulima Help
+                        </button>
+                    </div>
+                    <div class="col-md-3 my-2">
+                        <button class="btn btn-light btn-sm" onclick="window.open('https://www.hawaii.edu/its/help-desk/', '_blank')">
+                            <i class="fa fa-phone-alt"></i> Help Desk
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="text-center my-4">
+            <small>
+                <a class="show_link" href="http://www.hawaii.edu/simp/laulima-feedback.php" target="_blank">Request Assistance</a> |
+                <a class="show_link" href="https://www.hawaii.edu/itunesu/laulima/" target="_blank">Request Site</a> |
+                <a class="show_link" href="https://www.hawaii.edu/its/contact/?a=laulima" target="_blank">Suggestion Box</a> |
+                <a class="show_link" href="https://www.sakaiproject.org/accessibility" target="_blank">Accessibility Info</a> |
+                <a class="show_link" href="https://www.hawaii.edu/student-basic-needs/" target="_blank">Student Basic Needs</a> |
+                <a class="show_link" href="https://www.hawaii.edu/titleix/" target="_blank">Title IX</a> |
+                <a class="show_link" href="http://www.hawaii.edu/" target="_blank">University of Hawai'i</a>
+            </small>
+            <p>Unauthorized access is prohibited by law. All use is subject to University of Hawai'i Executive Policy E2.210.</p>
+        </footer>
+    </div>
+</body>
+</html>
